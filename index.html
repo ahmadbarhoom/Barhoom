@@ -11,15 +11,16 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Tajawal', sans-serif;
+      background: black;
     }
 
-    #mobile-video, #desktop-video {
+    video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      border: none;
+      object-fit: cover;
       z-index: -1;
       display: none;
     }
@@ -86,11 +87,15 @@
 </head>
 <body>
 
-<!-- الفيديو للموبايل -->
-<iframe id="mobile-video" src="https://streamable.com/e/kkbhru?autoplay=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<!-- فيديو للموبايل -->
+<video id="mobile-video" autoplay muted loop playsinline>
+  <source src="https://files.catbox.moe/ioz7hd.mp4" type="video/mp4">
+</video>
 
-<!-- الفيديو للابتوب -->
-<iframe id="desktop-video" src="https://streamable.com/e/tzi2pa?autoplay=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<!-- فيديو للابتوب -->
+<video id="desktop-video" autoplay muted loop playsinline>
+  <source src="https://files.catbox.moe/sc6ex0.mp4" type="video/mp4">
+</video>
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
@@ -108,18 +113,23 @@
 
     if (window.innerWidth <= 768) {
       mobileVideo.style.display = 'block';
+      mobileVideo.muted = false;
+      mobileVideo.play();
+
+      desktopVideo.pause();
       desktopVideo.style.display = 'none';
     } else {
-      mobileVideo.style.display = 'none';
       desktopVideo.style.display = 'block';
+      desktopVideo.muted = false;
+      desktopVideo.play();
+
+      mobileVideo.pause();
+      mobileVideo.style.display = 'none';
     }
   }
 
   window.addEventListener('load', handleVideoDisplay);
   window.addEventListener('resize', handleVideoDisplay);
-
-  // رابط تحميل تطبيق أندرويد لاحقاً (فارغ الآن)
-  document.getElementById('android-link').href = "#";
 </script>
 
 </body>
