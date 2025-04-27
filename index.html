@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barhoom Sports</title>
   <style>
     body, html {
@@ -11,54 +12,61 @@
       overflow: hidden;
       font-family: 'Tajawal', sans-serif;
     }
+
     .background-video {
       position: fixed;
       top: 0;
       left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      z-index: -1;
     }
+
     .content {
-      position: relative;
-      z-index: 1;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+      text-align: center;
       background: rgba(0, 0, 0, 0.5);
+      padding: 30px 40px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     }
-    .btn {
-      margin-top: 20px;
+
+    .content h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .content a {
+      display: inline-block;
       padding: 12px 24px;
-      background-color: #ff5722;
+      background: #ff3c00;
       color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.3s;
       text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background 0.3s;
     }
-    .btn:hover {
-      background-color: #e64a19;
+
+    .content a:hover {
+      background: #e63200;
     }
   </style>
 </head>
 <body>
 
-<video autoplay muted loop class="background-video">
-  <source src="https://archive.org/download/barhoomsports-ronaldo-shot/barhoomsports-ronaldo-shot.mp4" type="video/mp4">
-  متصفحك لا يدعم تشغيل الفيديو.
+<video class="background-video" autoplay muted loop playsinline>
+  <source src="https://ahmadbarhoom.github.io/Barhoom/ronaldo.mp4" type="video/mp4">
+  متصفحك لا يدعم عرض الفيديو.
 </video>
 
 <div class="content">
   <h1>ابدأ رحلتك مع Barhoom Sports</h1>
-  <a class="btn" href="https://barhoomsports-tv.blogspot.com/">دخول للموقع</a>
+  <a href="https://barhoomsports-tv.blogspot.com/">ادخل الآن</a>
 </div>
 
 </body>
