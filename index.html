@@ -57,7 +57,6 @@
       align-items: center;
       justify-content: center;
       transition: 0.3s;
-      cursor: pointer;
     }
     .buttons a:hover {
       background: rgba(255, 255, 255, 0.4);
@@ -78,8 +77,8 @@
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع Barhoom Sports TV</h1>
-<div class="buttons">
-    <a href="https://barhoomsports-tv.blogspot.com/?app=1" target="_blank">
+  <div class="buttons">
+    <a href="https://apk.e-droid.net/apk/app3567418-972fip.apk?v=1" target="_blank">
       <img src="https://l.top4top.io/p_3404iozt41.png" alt="Android">
     </a>
     <a href="https://barhoomsports-tv.blogspot.com/?app=1" target="_blank">
@@ -89,7 +88,9 @@
       <img src="https://a.top4top.io/p_34042uyve1.png" alt="Windows">
     </a>
   </div>
+</div>
 
+<!-- سكربت تحميل الفيديو المناسب (موبايل أو ديسكتوب) -->
 <script>
   const container = document.getElementById('video-container');
 
@@ -101,7 +102,7 @@
     let newVideo = height > width ? "mobile" : "desktop";
 
     if (currentVideo === newVideo) {
-      return; // نفس الفيديو، لا تعيد التحميل
+      return;
     }
 
     container.setAttribute('data-current', newVideo);
@@ -117,12 +118,30 @@
     }
   }
 
-  function openLink(url) {
-    window.open(url, '_blank');
-  }
-
   window.addEventListener('load', loadVideo);
   window.addEventListener('resize', loadVideo);
+</script>
+
+<!-- سكربت التحقق من الروابط وعدم تخريب الصور أو ملفات APK -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('a');
+  links.forEach(function(link) {
+    const href = link.getAttribute('href');
+    if (
+      href && 
+      href.includes('barhoomsports-tv.blogspot.com') &&
+      !href.includes('?app=1') &&
+      !href.endsWith('.png') && 
+      !href.endsWith('.jpg') && 
+      !href.endsWith('.jpeg') && 
+      !href.endsWith('.gif') && 
+      !href.endsWith('.apk')
+    ) {
+      link.href += '?app=1';
+    }
+  });
+});
 </script>
 
 </body>
