@@ -87,17 +87,34 @@
 <script>
   const container = document.getElementById('video-container');
 
-  if (window.innerWidth <= 768) {
-    // 📱 موبايل
-    container.innerHTML = `
-      <iframe src="https://www.youtube.com/embed/JmVCwpzqEnk?autoplay=1&mute=1&controls=0&loop=1&playlist=JmVCwpzqEnk&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    `;
-  } else {
-    // 💻 لابتوب
-    container.innerHTML = `
-      <iframe src="https://www.youtube.com/embed/MY1jhHFl1P0?autoplay=1&mute=1&controls=0&loop=1&playlist=MY1jhHFl1P0&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    `;
+  function loadVideo() {
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let currentVideo = container.getAttribute('data-current');
+
+    let newVideo = height > width
+      ? "mobile"
+      : "desktop";
+
+    if (currentVideo === newVideo) {
+      return; // لو نفس الفيديو لا تعيد تحميله
+    }
+
+    container.setAttribute('data-current', newVideo);
+
+    if (newVideo === "mobile") {
+      container.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/JmVCwpzqEnk?autoplay=1&mute=1&controls=0&loop=1&playlist=JmVCwpzqEnk&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      `;
+    } else {
+      container.innerHTML = `
+        <iframe src="https://www.youtube.com/embed/MY1jhHFl1P0?autoplay=1&mute=1&controls=0&loop=1&playlist=MY1jhHFl1P0&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      `;
+    }
   }
+
+  window.addEventListener('load', loadVideo);
+  window.addEventListener('resize', loadVideo);
 </script>
 
 </body>
