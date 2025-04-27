@@ -2,64 +2,63 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Barhoom Sports</title>
   <style>
     body, html {
-      height: 100%;
       margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: 'Tajawal', sans-serif;
-      overflow: hidden;
     }
-    .video-background {
+    .background-video {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
       z-index: -1;
-      overflow: hidden;
-    }
-    .video-background iframe {
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
+      object-fit: cover;
     }
     .content {
-      height: 100%;
+      position: relative;
+      z-index: 1;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       color: white;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
-      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.5);
     }
-    .start-button {
-      background: #ff4500;
-      border: none;
-      padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 8px;
-      color: white;
-      cursor: pointer;
+    .btn {
       margin-top: 20px;
-      transition: background 0.3s;
+      padding: 12px 24px;
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s;
       text-decoration: none;
     }
-    .start-button:hover {
-      background: #e03e00;
+    .btn:hover {
+      background-color: #e64a19;
     }
   </style>
 </head>
 <body>
 
-<div class="video-background">
-  <iframe src="https://www.youtube.com/embed/HfiH5d2oYyk?autoplay=1&mute=1&controls=0&loop=1&playlist=HfiH5d2oYyk&modestbranding=1&showinfo=0&rel=0" 
-          frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-</div>
+<video autoplay muted loop class="background-video">
+  <source src="https://archive.org/download/barhoomsports-ronaldo-shot/barhoomsports-ronaldo-shot.mp4" type="video/mp4">
+  متصفحك لا يدعم تشغيل الفيديو.
+</video>
 
 <div class="content">
-  <h1>مرحبا بك في Barhoom Sports</h1>
-  <a href="https://barhoomsports-tv.blogspot.com/" class="start-button">ابدأ رحلتك مع Barhoom Sports</a>
+  <h1>ابدأ رحلتك مع Barhoom Sports</h1>
+  <a class="btn" href="https://barhoomsports-tv.blogspot.com/">دخول للموقع</a>
 </div>
 
 </body>
