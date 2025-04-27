@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barhoom Sports</title>
+  <title>Barhoom Sports TV</title>
   <style>
     body, html {
       margin: 0;
       padding: 0;
       height: 100%;
       overflow: hidden;
-      font-family: 'Tajawal', sans-serif;
+      background: black;
     }
-
-    video {
+    #video-laptop, #video-phone {
       position: fixed;
       top: 0;
       left: 0;
@@ -23,7 +22,6 @@
       z-index: -1;
       display: none;
     }
-
     .overlay {
       position: absolute;
       top: 0;
@@ -32,104 +30,38 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       color: white;
-      text-align: center;
-      text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+      text-shadow: 0 2px 5px black;
+      z-index: 1;
     }
-
-    .overlay h1 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      animation: glow 2s infinite alternate;
-    }
-
     .buttons {
       display: flex;
       gap: 20px;
       margin-top: 20px;
     }
-
     .buttons a {
+      width: 60px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid white;
       border-radius: 15px;
-      width: 70px;
-      height: 70px;
       transition: 0.3s;
     }
-
     .buttons a img {
-      width: 40px;
-      height: 40px;
-      filter: drop-shadow(0 0 10px #fff);
+      width: 30px;
+      height: 30px;
     }
-
     .buttons a:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.1);
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-      }
-      to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
-      }
+      background: rgba(255,255,255,0.3);
     }
   </style>
 </head>
 <body>
 
-<!-- فيديو للهاتف -->
-<video id="mobile-video" autoplay muted loop playsinline>
-  <source src="https://files.catbox.moe/football_portrait.mp4" type="video/mp4">
-</video>
-
-<!-- فيديو للكمبيوتر -->
-<video id="desktop-video" autoplay muted loop playsinline>
-  <source src="https://files.catbox.moe/football_landscape.mp4" type="video/mp4">
-</video>
-
-<div class="overlay">
-  <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
-  <div class="buttons">
-    <a href="#" id="android-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android"></a>
-    <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone"></a>
-    <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows"></a>
-  </div>
-</div>
-
-<script>
-  function handleVideoDisplay() {
-    const mobileVideo = document.getElementById('mobile-video');
-    const desktopVideo = document.getElementById('desktop-video');
-
-    if (window.innerWidth <= 768) {
-      mobileVideo.style.display = 'block';
-      mobileVideo.muted = false;
-      mobileVideo.play();
-
-      desktopVideo.pause();
-      desktopVideo.style.display = 'none';
-    } else {
-      desktopVideo.style.display = 'block';
-      desktopVideo.muted = false;
-      desktopVideo.play();
-
-      mobileVideo.pause();
-      mobileVideo.style.display = 'none';
-    }
-  }
-
-  window.addEventListener('load', handleVideoDisplay);
-  window.addEventListener('resize', handleVideoDisplay);
-</script>
-
-</body>
-</html>
+<video id="video-laptop" autoplay muted loop playsinline>
+  <source src="https
