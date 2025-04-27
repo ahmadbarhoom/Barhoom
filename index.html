@@ -64,4 +64,32 @@
 <body>
 
 <video id="video-laptop" autoplay muted loop playsinline>
-  <source src="https
+  <source src="https://files.catbox.moe/wdrdnr.mp4" type="video/mp4">
+</video>
+
+<video id="video-phone" autoplay muted loop playsinline>
+  <source src="https://files.catbox.moe/jihi83.mp4" type="video/mp4">
+</video>
+
+<div class="overlay">
+  <h1>مرحبا بك في Barhoom Sports TV</h1>
+  <div class="buttons">
+    <a href="#" id="android-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android"></a>
+    <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone"></a>
+    <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows"></a>
+  </div>
+</div>
+
+<script>
+  const videoLaptop = document.getElementById('video-laptop');
+  const videoPhone = document.getElementById('video-phone');
+
+  if (window.innerWidth <= 768) {
+    videoPhone.style.display = 'block';
+  } else {
+    videoLaptop.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
