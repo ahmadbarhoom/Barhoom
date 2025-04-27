@@ -14,20 +14,14 @@
       background: black;
     }
 
-    .video-container {
+    video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
       z-index: -1;
-      overflow: hidden;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
     }
 
     .overlay {
@@ -36,7 +30,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -47,7 +41,7 @@
     }
 
     .overlay h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       margin-bottom: 30px;
       animation: glow 2s infinite alternate;
     }
@@ -65,14 +59,14 @@
       background: rgba(255, 255, 255, 0.1);
       border: 2px solid #fff;
       border-radius: 15px;
-      width: 70px;
-      height: 70px;
+      width: 65px;
+      height: 65px;
       transition: 0.3s;
     }
 
     .buttons a img {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       filter: drop-shadow(0 0 10px #fff);
     }
 
@@ -93,46 +87,44 @@
 </head>
 <body>
 
-<div class="video-container" id="videoContainer">
-  <!-- هنا الفيديو سيتم تحميله تلقائي حسب نوع الجهاز -->
-</div>
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source id="videoSource" src="" type="video/mp4">
+  متصفحك لا يدعم عرض الفيديو.
+</video>
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
   <div class="buttons">
+    <!-- رابط تحميل أندرويد (تعدله لاحقاً) -->
     <a href="#" id="android-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android Logo">
     </a>
+
+    <!-- رابط مدونة آيفون -->
     <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone Logo">
     </a>
+
+    <!-- رابط مدونة ويندوز -->
     <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows Logo">
     </a>
   </div>
 </div>
 
 <script>
-  const videoContainer = document.getElementById('videoContainer');
+  const bgVideo = document.getElementById('bgVideo');
+  const videoSource = document.getElementById('videoSource');
 
   if (window.innerWidth <= 768) {
-    // موبايل (فيديو شورتس)
-    videoContainer.innerHTML = `
-      <iframe src="https://www.youtube.com/embed/wM8Q3U0-QOg?autoplay=1&mute=1&controls=0&loop=1&playlist=wM8Q3U0-QOg"
-        frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-      </iframe>
-    `;
+    // 📱 موبايل
+    videoSource.src = "https://files.catbox.moe/ioz7hd.mp4";
   } else {
-    // لابتوب (فيديو عادي)
-    videoContainer.innerHTML = `
-      <iframe src="https://www.youtube.com/embed/NTpb9CqfOdg?autoplay=1&mute=1&controls=0&loop=1&playlist=NTpb9CqfOdg"
-        frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-      </iframe>
-    `;
+    // 💻 لابتوب
+    videoSource.src = "https://files.catbox.moe/sc6ex0.mp4";
   }
 
-  // رابط الاندرويد حالياً فاضي لتحديثه لاحقاً
-  document.getElementById('android-link').href = "#";
+  bgVideo.load();
 </script>
 
 </body>
