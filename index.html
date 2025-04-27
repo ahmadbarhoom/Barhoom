@@ -14,14 +14,19 @@
       background: black;
     }
 
-    video {
+    .video-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
       z-index: -1;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .overlay {
@@ -37,7 +42,7 @@
       justify-content: center;
       color: white;
       text-align: center;
-      text-shadow: 0 0 5px #ffffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
     }
 
     .overlay h1 {
@@ -62,7 +67,6 @@
       width: 70px;
       height: 70px;
       transition: 0.3s;
-      text-decoration: none;
     }
 
     .buttons a img {
@@ -78,25 +82,23 @@
 
     @keyframes glow {
       from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
       }
       to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
       }
     }
   </style>
 </head>
 <body>
 
-<video id="bgVideo" autoplay muted loop playsinline>
-  <source id="videoSource" src="" type="video/mp4">
-  متصفحك لا يدعم عرض الفيديو.
-</video>
+<div class="video-container" id="videoContainer">
+  <!-- الفيديو سيتغير تلقائياً حسب نوع الجهاز -->
+</div>
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
   <div class="buttons">
-    <!-- ملاحظة: يمكنك تغيير روابط الصور بكل سهولة -->
     <a href="#" id="android-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android"></a>
     <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone"></a>
     <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link"><img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows"></a>
@@ -104,21 +106,22 @@
 </div>
 
 <script>
-  const bgVideo = document.getElementById('bgVideo');
-  const videoSource = document.getElementById('videoSource');
+  const videoContainer = document.getElementById('videoContainer');
 
   if (window.innerWidth <= 768) {
-    // موبايل
-    videoSource.src = "https://files.catbox.moe/dimtza.mp4"; // فيديو الطولي
+    // شاشة موبايل
+    videoContainer.innerHTML = `
+      <iframe src="https://streamable.com/e/hznjdf?autoplay=1&nocontrols=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>
+    `;
   } else {
-    // لابتوب
-    videoSource.src = "https://files.catbox.moe/yw81j6.mp4"; // فيديو العرضي
+    // شاشة لابتوب
+    videoContainer.innerHTML = `
+      <iframe src="https://streamable.com/e/9eutqi?autoplay=1&nocontrols=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>
+    `;
   }
 
-  bgVideo.load();
-
-  // رابط تحميل APK للأندرويد (تعدله لما تجهزه)
-  document.getElementById('android-link').href = "#"; // حط رابطك هون وقت ما تجهز
+  // الرابط الخاص بتحميل تطبيق الاندرويد (لاحقاً انت بتغيره)
+  document.getElementById('android-link').href = "#"; // فاضي لحد تحط انت الرابط
 </script>
 
 </body>
