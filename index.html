@@ -14,25 +14,22 @@
     }
     .video-background {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2; /* خليه بالخلف تماماً */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
       overflow: hidden;
     }
     .video-background iframe {
       width: 100vw;
       height: 100vh;
-      pointer-events: none; /* خليه ما يستقبل الكبسات */
+      pointer-events: none;
       border: none;
     }
     .overlay {
-      position: relative; /* صار طبيعي مش ثابت */
-      z-index: 10;
-      width: 100%;
-      height: 100vh;
-      background: rgba(0,0,0,0.4);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -61,7 +58,6 @@
       justify-content: center;
       transition: 0.3s;
       cursor: pointer;
-      text-decoration: none;
     }
     .buttons a:hover {
       background: rgba(255, 255, 255, 0.4);
@@ -83,13 +79,13 @@
 <div class="overlay">
   <h1>ابدأ رحلتك مع Barhoom Sports TV</h1>
   <div class="buttons">
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="openLink('https://barhoomsports-tv.blogspot.com/')">
       <img src="https://l.top4top.io/p_3404iozt41.png" alt="Android">
     </a>
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="openLink('https://barhoomsports-tv.blogspot.com/')">
       <img src="https://e.top4top.io/p_3404zjpme1.png" alt="iPhone">
     </a>
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="openLink('https://barhoomsports-tv.blogspot.com/')">
       <img src="https://a.top4top.io/p_34042uyve1.png" alt="Windows">
     </a>
   </div>
@@ -106,7 +102,7 @@
     let newVideo = height > width ? "mobile" : "desktop";
 
     if (currentVideo === newVideo) {
-      return;
+      return; // نفس الفيديو، لا تعيد التحميل
     }
 
     container.setAttribute('data-current', newVideo);
@@ -120,6 +116,10 @@
         <iframe src="https://www.youtube.com/embed/MY1jhHFl1P0?autoplay=1&mute=1&controls=0&loop=1&playlist=MY1jhHFl1P0&modestbranding=1&showinfo=0&rel=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
       `;
     }
+  }
+
+  function openLink(url) {
+    window.open(url, '_blank');
   }
 
   window.addEventListener('load', loadVideo);
