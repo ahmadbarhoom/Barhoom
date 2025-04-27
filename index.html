@@ -11,43 +11,46 @@
       height: 100%;
       overflow: hidden;
       font-family: 'Tajawal', sans-serif;
-      background: black;
     }
-    .video-background {
+
+    #mobile-video, #desktop-video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      z-index: -1;
-    }
-    .video-background iframe {
-      width: 100%;
-      height: 100%;
       border: none;
+      z-index: -1;
+      display: none;
     }
+
     .overlay {
-      position: relative;
-      z-index: 1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       color: white;
-      text-shadow: 0 0 10px #000;
       text-align: center;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
     }
+
     .overlay h1 {
       font-size: 2.5em;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      animation: glow 2s infinite alternate;
     }
+
     .buttons {
       display: flex;
       gap: 20px;
       margin-top: 20px;
     }
+
     .buttons a {
       display: flex;
       align-items: center;
@@ -59,20 +62,35 @@
       height: 70px;
       transition: 0.3s;
     }
+
     .buttons a img {
       width: 40px;
       height: 40px;
       filter: drop-shadow(0 0 10px #fff);
     }
+
     .buttons a:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: scale(1.1);
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="video-background" id="videoBackground"></div>
+<!-- الفيديو للموبايل -->
+<iframe id="mobile-video" src="https://streamable.com/e/kkbhru?autoplay=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+<!-- الفيديو للابتوب -->
+<iframe id="desktop-video" src="https://streamable.com/e/tzi2pa?autoplay=1&loop=1&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
@@ -84,17 +102,23 @@
 </div>
 
 <script>
-  const videoBackground = document.getElementById('videoBackground');
+  function handleVideoDisplay() {
+    const mobileVideo = document.getElementById('mobile-video');
+    const desktopVideo = document.getElementById('desktop-video');
 
-  if (window.innerWidth <= 768) {
-    // موبايل
-    videoBackground.innerHTML = `<iframe src="https://streamable.com/e/kkbhru?autoplay=1&loop=1&muted=0&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-  } else {
-    // لابتوب
-    videoBackground.innerHTML = `<iframe src="https://streamable.com/e/tzi2pa?autoplay=1&loop=1&muted=0&nocontrols=1" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+    if (window.innerWidth <= 768) {
+      mobileVideo.style.display = 'block';
+      desktopVideo.style.display = 'none';
+    } else {
+      mobileVideo.style.display = 'none';
+      desktopVideo.style.display = 'block';
+    }
   }
 
-  // رابط تحميل اندرويد (فارغ الآن)
+  window.addEventListener('load', handleVideoDisplay);
+  window.addEventListener('resize', handleVideoDisplay);
+
+  // رابط تحميل تطبيق أندرويد لاحقاً (فارغ الآن)
   document.getElementById('android-link').href = "#";
 </script>
 
