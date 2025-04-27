@@ -3,36 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دخول للموقع</title>
+  <title>Barhoom Sports</title>
   <style>
-    body {
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      overflow: hidden;
+    }
+    .video-background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    .video-background iframe {
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+    }
+    .content {
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background-color: #f9f9f9;
-      margin: 0;
-      font-family: 'Cairo', sans-serif;
+      flex-direction: column;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.7);
+      background: rgba(0, 0, 0, 0.4);
     }
-    .button {
+    .start-button {
+      background: #ff4500;
+      border: none;
       padding: 15px 30px;
       font-size: 20px;
-      background-color: #4CAF50;
+      border-radius: 8px;
       color: white;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      transition: background-color 0.3s;
+      margin-top: 20px;
+      transition: background 0.3s;
+      text-decoration: none;
     }
-    .button:hover {
-      background-color: #45a049;
+    .start-button:hover {
+      background: #e03e00;
     }
   </style>
 </head>
 <body>
-  <button class="button" onclick="window.location.href='https://barhoomsports-tv.blogspot.com/';">
-    دخول للموقع
-  </button>
+
+<div class="video-background">
+  <iframe src="https://www.youtube.com/embed/HfiH5d2oYyk?autoplay=1&mute=1&controls=0&loop=1&playlist=HfiH5d2oYyk&modestbranding=1&showinfo=0&rel=0" 
+          frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</div>
+
+<div class="content">
+  <h1>مرحبا بك في Barhoom Sports</h1>
+  <a href="https://barhoomsports-tv.blogspot.com/" class="start-button">ابدأ رحلتك مع Barhoom Sports</a>
+</div>
+
 </body>
 </html>
