@@ -14,19 +14,14 @@
       background: black;
     }
 
-    .video-container {
+    video {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
+      object-fit: cover;
       z-index: -1;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
     }
 
     .overlay {
@@ -67,6 +62,7 @@
       width: 70px;
       height: 70px;
       transition: 0.3s;
+      text-decoration: none;
     }
 
     .buttons a img {
@@ -92,9 +88,9 @@
 </head>
 <body>
 
-<div class="video-container" id="videoContainer">
-  <!-- الفيديو سيتغير تلقائياً حسب نوع الجهاز -->
-</div>
+<video id="bgVideo" autoplay muted loop playsinline>
+  <source id="videoSource" src="" type="video/mp4">
+</video>
 
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
@@ -106,22 +102,21 @@
 </div>
 
 <script>
-  const videoContainer = document.getElementById('videoContainer');
+  const bgVideo = document.getElementById('bgVideo');
+  const videoSource = document.getElementById('videoSource');
 
   if (window.innerWidth <= 768) {
-    // شاشة موبايل
-    videoContainer.innerHTML = `
-      <iframe src="https://streamable.com/e/hznjdf?autoplay=1&nocontrols=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>
-    `;
+    // موبايل
+    videoSource.src = "https://cdn.pixabay.com/video/2022/11/08/137773-780917127_large.mp4";
   } else {
-    // شاشة لابتوب
-    videoContainer.innerHTML = `
-      <iframe src="https://streamable.com/e/9eutqi?autoplay=1&nocontrols=1" allowfullscreen allow="autoplay" frameborder="0"></iframe>
-    `;
+    // لابتوب
+    videoSource.src = "https://cdn.pixabay.com/video/2024/01/10/199569-903137347_large.mp4";
   }
 
-  // الرابط الخاص بتحميل تطبيق الاندرويد (لاحقاً انت بتغيره)
-  document.getElementById('android-link').href = "#"; // فاضي لحد تحط انت الرابط
+  bgVideo.load();
+
+  // الرابط الخاص بتطبيق الاندرويد (لاحقاً انت بتغيره)
+  document.getElementById('android-link').href = "#"; // حالياً فاضي
 </script>
 
 </body>
