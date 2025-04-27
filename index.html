@@ -57,6 +57,7 @@
       align-items: center;
       justify-content: center;
       transition: 0.3s;
+      cursor: pointer;
     }
     .buttons a:hover {
       background: rgba(255, 255, 255, 0.4);
@@ -78,13 +79,13 @@
 <div class="overlay">
   <h1>ابدأ رحلتك مع Barhoom Sports TV</h1>
   <div class="buttons">
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="redirectToBlog()">
       <img src="https://l.top4top.io/p_3404iozt41.png" alt="Android">
     </a>
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="redirectToBlog()">
       <img src="https://e.top4top.io/p_3404zjpme1.png" alt="iPhone">
     </a>
-    <a href="https://barhoomsports-tv.blogspot.com/" target="_blank">
+    <a onclick="redirectToBlog()">
       <img src="https://a.top4top.io/p_34042uyve1.png" alt="Windows">
     </a>
   </div>
@@ -103,7 +104,7 @@
       : "desktop";
 
     if (currentVideo === newVideo) {
-      return; // لو نفس الفيديو لا تعيد تحميله
+      return;
     }
 
     container.setAttribute('data-current', newVideo);
@@ -121,6 +122,10 @@
 
   window.addEventListener('load', loadVideo);
   window.addEventListener('resize', loadVideo);
+
+  function redirectToBlog() {
+    window.open('https://barhoomsports-tv.blogspot.com/', '_blank');
+  }
 </script>
 
 </body>
