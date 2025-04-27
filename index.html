@@ -10,18 +10,26 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
-      background: black;
       font-family: 'Tajawal', sans-serif;
+      background: black;
     }
-    video {
+
+    .video-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
       z-index: -1;
+      overflow: hidden;
     }
+
+    .video-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -35,78 +43,95 @@
       justify-content: center;
       color: white;
       text-align: center;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
     }
+
     .overlay h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       margin-bottom: 30px;
-      text-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff;
       animation: glow 2s infinite alternate;
     }
+
     .buttons {
       display: flex;
       gap: 20px;
       margin-top: 20px;
     }
+
     .buttons a {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
-      border-radius: 12px;
-      padding: 10px;
-      transition: 0.3s;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #fff;
+      border-radius: 15px;
+      width: 70px;
+      height: 70px;
+      transition: 0.3s;
     }
+
     .buttons a img {
-      width: 35px;
-      height: 35px;
-      filter: drop-shadow(0 0 5px #fff);
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 0 10px #fff);
     }
+
     .buttons a:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: scale(1.1);
     }
+
     @keyframes glow {
-      from { text-shadow: 0 0 10px #ff00ff; }
-      to { text-shadow: 0 0 20px #ff00ff; }
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+      }
     }
   </style>
 </head>
 <body>
 
-<!-- الفيديو -->
-<video id="bgVideo" autoplay muted loop playsinline>
-  <source id="videoSource" src="" type="video/mp4">
-</video>
+<div class="video-container" id="videoContainer">
+  <!-- هنا الفيديو سيتم تحميله تلقائي حسب نوع الجهاز -->
+</div>
 
-<!-- الكتابة فوق الفيديو -->
 <div class="overlay">
   <h1>ابدأ رحلتك مع BARHOOM SPORTS TV</h1>
   <div class="buttons">
-    <a href="#" id="android-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android"></a>
-    <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone"></a>
-    <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link"><img src="https://cdn-icons-png.flaticon.com/512/888/888870.png" alt="Windows"></a>
+    <a href="#" id="android-link">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888857.png" alt="Android">
+    </a>
+    <a href="https://barhoomsports-tv.blogspot.com/" id="iphone-link">
+      <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="iPhone">
+    </a>
+    <a href="https://barhoomsports-tv.blogspot.com/" id="windows-link">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732221.png" alt="Windows">
+    </a>
   </div>
 </div>
 
-<!-- جافا سكريبت لتغيير الفيديو حسب الجهاز -->
 <script>
-  const bgVideo = document.getElementById('bgVideo');
-  const videoSource = document.getElementById('videoSource');
+  const videoContainer = document.getElementById('videoContainer');
 
   if (window.innerWidth <= 768) {
-    // للموبايل
-    videoSource.src = "https://files.catbox.moe/jdofgu.mp4"; // فيديو موبايل (طولي)
+    // موبايل (فيديو شورتس)
+    videoContainer.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/wM8Q3U0-QOg?autoplay=1&mute=1&controls=0&loop=1&playlist=wM8Q3U0-QOg"
+        frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+      </iframe>
+    `;
   } else {
-    // للابتوب
-    videoSource.src = "https://files.catbox.moe/z3rsue.mp4"; // فيديو لابتوب (عرضي)
+    // لابتوب (فيديو عادي)
+    videoContainer.innerHTML = `
+      <iframe src="https://www.youtube.com/embed/NTpb9CqfOdg?autoplay=1&mute=1&controls=0&loop=1&playlist=NTpb9CqfOdg"
+        frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+      </iframe>
+    `;
   }
 
-  bgVideo.load();
-
-  // رابط تحميل APK لاحقاً
+  // رابط الاندرويد حالياً فاضي لتحديثه لاحقاً
   document.getElementById('android-link').href = "#";
 </script>
 
